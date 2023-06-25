@@ -1,2 +1,2 @@
 # python-repo
-Repository for python exercises
+Repository for python code
