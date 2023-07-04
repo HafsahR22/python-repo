@@ -10,12 +10,8 @@ def response(stop_instances):
 
 print(response)
 
-import time
 
-import schedule
-
-schedule.every(stop_instances).day.at("03:00").do(job,'It is 03:00')
 
 while True:
-    schedule.stop_instances()
-    time.sleep(60) 
+   EC2.Client.stop_instances()
+     
