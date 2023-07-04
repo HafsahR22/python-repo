@@ -1,17 +1,14 @@
 import boto3
 
+ec2 = boto3.client('ec2')
 
-def response(stop_instances): 
-    response = client.stop_instances(
-    InstanceIds=[
-        'i-01f1e91b0ed9d7a14)','i-0f16aa3a2eb2e9c45','i-043faf628c445a688'
-    ],
-)
+response = ec2.describe_instances()
+instances = response['Reservations']
 
-print(response)
+for instance in instances:
+    instance_id = instance['Instances'][0]['InstanceId']
+    state = instance['Instances'][0]['State']['Name']
 
-
-
-while True:
-   EC2.Client.stop_instances()
-     
+    if state == 'running':
+        response2 = ec2.stop_instances(InstanceIds=[instance_id])
+        print(response2)
